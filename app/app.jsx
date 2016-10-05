@@ -32,7 +32,7 @@ let CardView = React.createClass({
       <div>
         <p>{text}</p>
 
-        <button onClick={this.flip}>
+        <button onClick={this.flip} className = "button button-success expand">
           Flip
         </button>
       </div>
