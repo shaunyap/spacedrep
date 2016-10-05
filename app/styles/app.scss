@@ -9,3 +9,15 @@
 body {
     padding-top: 20vh;
 }
+
+.card {
+    padding: 10rem;
+    border: 1px black solid;
+    text-align: center;
+    
+    h4 {
+        font-weight: 600;
+        front-size: 1.3em;
+        min-height: 7rem;
+    }
+}
