@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 export var CardContent = React.createClass({
   render() {
     let text;

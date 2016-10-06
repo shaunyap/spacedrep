@@ -1,4 +1,5 @@
 import React from 'react';
+var {connect} = require('react-redux');
 
 import CardContent from './CardContent';
 import CardControlArea from './CardControlArea';
@@ -19,17 +20,25 @@ export var Card = React.createClass({
   },
 
   // upon getting an update from cardControl, if end of deck, go back to first card
-  onChildChanged: function(newState, newCard) {
-    this.setState({ front: newState, cardN: newCard%cardCount });
+  toggleAnswer: function(newState) {
+    this.setState({ front: newState });
+  },
+  
+  nextCard: function(newCard) {
+    this.setState({ front: true, cardN: newCard%cardCount });
   },
     
   render: function() {
     return (
     <div className="card">
         <CardContent front = {this.state.front} cards = {this.state.cardArr} cardN = {this.state.cardN}/>
-        <CardControlArea front={this.state.front} cardN = {this.state.cardN} callbackParent={this.onChildChanged}/>
+        <CardControlArea front={this.state.front}
+          cardN = {this.state.cardN}
+          callbackToggle={this.toggleAnswer}
+          callbackNextCard={this.nextCard}
+        />
     </div>
   )}
 });
 
-module.exports = Card;
+export default connect()(Card);

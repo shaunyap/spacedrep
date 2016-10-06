@@ -13,21 +13,29 @@ export var CardControlArea = React.createClass({
           front: newState
         });
 
-        // if the answer is showing, switch to the next card
-        var cardN = this.props.cardN;
-        newState? cardN++ : cardN;
-
         // pass any changes back up to parent
-        this.props.callbackParent(newState, cardN);
+        this.props.callbackToggle(newState);
       },
+      
+      nextCard: function() {
+      // if the answer is showing, switch to the next card
+        var cardN = this.props.cardN + 1;
+        this.state.front = true;
+        this.props.callbackNextCard(cardN);
+      },
+      
     
     render: function() {
     var text;
-    this.state.front? text = "Show answer" : text = "Next Question"
+    this.state.front? text = "Show answer" : text = "Show Question"
     return (
         <div>
             <button onClick={this.flip} className="button expanded">
             {text}
+            </button>
+            
+            <button onClick={this.nextCard} className="button expanded">
+            Next Card
             </button>
         </div>
         )}
