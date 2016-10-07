@@ -3,14 +3,23 @@ var {connect} = require('react-redux');
 
 import CardContent from './CardContent';
 import CardControlArea from './CardControlArea';
+import firebase from 'app/firebase/';
 
-let cards = [
-    {"word":"사실","definition":"The truth, a fact"},
-    {"word":"나다","definition":"To be born"},
-    {"word":"없다","definition":"Do not exist, absent"}, 
-    {"word":"경우","definition":"A case or an instance"},
-    {"word":"싶다","definition":"want,hope"}
-  ];
+let cards = [];
+
+  // Database query - need to make this async, and load more than just one card
+  var newWord = firebase.database().ref('1/' + '/word');
+  var nObj = {};
+  newWord.on('value', function(snapshot) {
+    nObj.word = snapshot.val();
+  });
+
+  var newDef =firebase.database().ref('1/' + '/definition');
+  newDef.on('value', function(snapshot) {
+    nObj.definition = snapshot.val();
+  });
+  
+  cards.push(nObj);
   
 let cardCount = cards.length;  
 
