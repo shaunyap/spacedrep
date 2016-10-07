@@ -8,13 +8,13 @@ import firebase from 'app/firebase/';
 let cards = [];
 
   // Database query - need to make this async, and load more than just one card
-  var newWord = firebase.database().ref('1/' + '/word');
+  var newWord = firebase.database().ref('0/' + '/word');
   var nObj = {};
   newWord.on('value', function(snapshot) {
     nObj.word = snapshot.val();
   });
 
-  var newDef =firebase.database().ref('1/' + '/definition');
+  var newDef =firebase.database().ref('0/' + '/definition');
   newDef.on('value', function(snapshot) {
     nObj.definition = snapshot.val();
   });

@@ -1,12 +1,13 @@
 import firebase from 'firebase';
+var config = require("json!../../firebaseConfig.json");
 
 try {
   var config = {
-    apiKey: "AIzaSyB9CBqwNRVS3W6jMPdAmDnLmdDPDQPzpQo",
-    authDomain: "spaced-repetition-system.firebaseapp.com",
-    databaseURL: "https://spaced-repetition-system.firebaseio.com",
-    storageBucket: "spaced-repetition-system.appspot.com",
-    messagingSenderId: "438562721221"
+    apiKey: config.API_KEY,
+    authDomain: config.AUTH_DOMAIN,
+    databaseURL: config.DATABASE_URL,
+    storageBucket: config.STORAGE_BUCKET,
+    messagingSenderId: config.MESSAGING_SENDER_ID
   };
   firebase.initializeApp(config);
 } catch (e) {
