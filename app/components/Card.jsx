@@ -1,31 +1,41 @@
 import React from 'react';
 var {connect} = require('react-redux');
+import * as Redux from 'react-redux';
 
 import CardContent from './CardContent';
 import CardControlArea from './CardControlArea';
 import firebase from 'app/firebase/';
 
-let cards = [];
-
-  // Database query - need to make this async, and load more than just one card
-  var newWord = firebase.database().ref('0/' + '/word');
-  var nObj = {};
-  newWord.on('value', function(snapshot) {
-    nObj.word = snapshot.val();
-  });
-
-  var newDef =firebase.database().ref('0/' + '/definition');
-  newDef.on('value', function(snapshot) {
-    nObj.definition = snapshot.val();
-  });
+let cards = [{
+    "word": "시작",
+    "definition": "Start"
+  }];
   
-  cards.push(nObj);
-  
+var db = firebase.database();
+var ref = db.ref("book");
+
 let cardCount = cards.length;  
 
 export var Card = React.createClass({
   getInitialState: function() {
     return { front: true, cardN: 0, cardArr: cards };
+  },
+  
+  componentDidMount: function() {
+    ref.once("value").then((snapshot) => {
+      snapshot.forEach( function(data) {
+          var newEntry = {};
+          newEntry.word = data.val().word;
+          newEntry.definition = data.val().definition;
+          
+          cards.push(newEntry);
+          cardCount = cards.length;
+      }), (e) => {
+        console.log("error reading data");
+      };
+    
+      console.log(cards);
+    });
   },
 
   // upon getting an update from cardControl, if end of deck, go back to first card
@@ -34,7 +44,7 @@ export var Card = React.createClass({
   },
   
   nextCard: function(newCard) {
-    this.setState({ front: true, cardN: newCard%cardCount });
+    this.setState({ front: true, cardN: newCard%cardCount, cardArr: cards });
   },
     
   render: function() {

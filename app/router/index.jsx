@@ -1,9 +1,6 @@
 import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
-
-import Main from '../components/Main.jsx';
 import Card from '../components/Card.jsx';
-
 import Login from '../components/Login.jsx';
 import firebase from 'app/firebase/'
 
