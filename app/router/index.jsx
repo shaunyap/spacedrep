@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import Card from '../components/Card.jsx';
 import Login from '../components/Login.jsx';
+import Main from '../components/Main.jsx';
 import firebase from 'app/firebase/'
 
 var requireLogin = (nextState, replace, next) => {
@@ -20,7 +21,7 @@ var redirectIfLoggedIn = (nextState, replace, next) => {
 
 export default(
     <Router history={hashHistory}>
-    <Route path="/">
+    <Route path="/" component={Main}>
             <Route path="cards" component={Card} onEnter={requireLogin}/>
             <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
         </Route>

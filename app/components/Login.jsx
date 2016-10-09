@@ -9,7 +9,7 @@ export var Login = React.createClass({
   },
   render() {
     return (
-        <div className='callout callout-auth'>
+        <div className='callout callout-auth card'>
           <h3>Login</h3>
           <p>Login with your Facebook account.</p>
           <button className='button' onClick={this.onLogin}>Login with Facebook</button>

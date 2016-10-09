@@ -6,11 +6,9 @@
 @include foundation-everything;
 
 // Components
-body {
-    padding-top: 20vh;
-}
 
 .card {
+    margin-top: 20vh;
     padding: 10rem;
     border: 1px black solid;
     text-align: center;
