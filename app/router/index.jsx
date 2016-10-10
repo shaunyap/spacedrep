@@ -3,18 +3,19 @@ import {Route, Router, IndexRoute, hashHistory} from 'react-router';
 import Card from '../components/Card.jsx';
 import Login from '../components/Login.jsx';
 import Main from '../components/Main.jsx';
+import Dashboard from '../components/Dashboard.jsx';
 import firebase from 'app/firebase/'
 
 var requireLogin = (nextState, replace, next) => {
     if (!firebase.auth().currentUser) {
-        replace('/');
+        replace('/login');
     }
     next();
 };
 
 var redirectIfLoggedIn = (nextState, replace, next) => {
     if (firebase.auth().currentUser) {
-        replace('/cards');
+        replace('/');
     }
     next();
 };
@@ -22,8 +23,9 @@ var redirectIfLoggedIn = (nextState, replace, next) => {
 export default(
     <Router history={hashHistory}>
     <Route path="/" component={Main}>
+            <IndexRoute component={Dashboard} onEnter={requireLogin}/>
             <Route path="cards" component={Card} onEnter={requireLogin}/>
-            <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
-        </Route>
+            <Route path="login" component={Login} onEnter={redirectIfLoggedIn}/>
+    </Route>
     </Router>
 );

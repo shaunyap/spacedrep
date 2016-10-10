@@ -2,15 +2,15 @@ import React from 'react';
 
 export var CardControlArea = React.createClass({
      getInitialState: function() {
-        return { front: this.props.front };
+        return { frontSide: this.props.frontSide };
       },
       
       // define a click handler that flips the card
       flip: function() {
         //   set the side of the card after the change
-        var newState = !this.state.front;
+        var newState = !this.state.frontSide;
         this.setState({
-          front: newState
+          frontSide: newState
         });
 
         // pass any changes back up to parent
@@ -20,14 +20,14 @@ export var CardControlArea = React.createClass({
       nextCard: function() {
       // if the answer is showing, switch to the next card
         var cardN = this.props.cardN + 1;
-        this.state.front = true;
+        this.state.frontSide = true;
         this.props.callbackNextCard(cardN);
       },
       
     
     render: function() {
     var text;
-    this.state.front? text = "Show answer" : text = "Show Question"
+    this.state.frontSide? text = "Show answer" : text = "Show Question"
     return (
         <div>
             <button onClick={this.flip} className="button expanded">
