@@ -10,18 +10,18 @@ let cards = [{
     "front": "시작",
     "back": "Start"
   }];
-  
-var db = firebase.database();
-var ref = db.ref("TOPIK_beginner");
 
 let cardCount = cards.length;  
 
 export var Card = React.createClass({
   getInitialState: function() {
-    return { frontSide: true, cardN: 0, cardArr: cards };
+    return { frontSide: true, cardN: 0, cardArr: cards, book: this.props.book || "TOPIK_beginner" };
   },
   
   componentDidMount: function() {
+    console.log(this.props.book)
+    var db = firebase.database();
+    var ref = db.ref(this.props.params.bookName);
     ref.once("value").then((snapshot) => {
       snapshot.forEach( function(data) {
           var newEntry = {};

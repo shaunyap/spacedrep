@@ -22,9 +22,6 @@ export var Nav = React.createClass({
                {firebase.auth().currentUser ? <div className='top-bar-right'>
                     <ul className='menu'>
                         <li>
-                            <Link to="/cards" activeClassName="active-link">My Cards</Link>
-                        </li>
-                        <li>
                             <Link onClick={this.onLogout}>Log Out</Link>
                         </li>
                     </ul>
