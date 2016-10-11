@@ -33,7 +33,7 @@ export var Dashboard = React.createClass({
           <p>Which set of cards do you want to load?</p>
           <ul>
           {this.state.bookName.map(function(book) {
-            return <li><Link to={'/cards/'+book } key={book}>{book}</Link></li>
+            return <li key={book}><Link to={'/cards/'+book}>{book}</Link></li>
           })}
           </ul>
         </div>

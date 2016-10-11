@@ -19,7 +19,6 @@ export var Card = React.createClass({
   },
   
   componentDidMount: function() {
-    console.log(this.props.book)
     var db = firebase.database();
     var ref = db.ref(this.props.params.bookName);
     ref.once("value").then((snapshot) => {

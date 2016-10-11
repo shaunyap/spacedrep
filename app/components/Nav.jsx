@@ -7,7 +7,8 @@ import firebase, {firebaseRef, provider} from 'app/firebase/';
 export var Nav = React.createClass({
     onLogout() {
         firebase.auth().signOut().then(function() {
-          console.log("signout success.")
+          console.log("signout success.");
+
         }, function(error) {
           console.log(error);
         });
@@ -23,10 +24,10 @@ export var Nav = React.createClass({
                {firebase.auth().currentUser ? <div className='top-bar-right'>
                     <ul className='menu'>
                         <li>
-                            <Link to = {Dashboard}>Dashboard</Link>
+                            <Link to={Dashboard}>Dashboard</Link>
                         </li>
                         <li>
-                            <Link onClick={this.onLogout}>Log Out</Link>
+                            <a onClick={this.onLogout}>Log Out</a>
                         </li>
                     </ul>
                 </div> : null }
