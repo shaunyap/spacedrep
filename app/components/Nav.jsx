@@ -1,5 +1,6 @@
 var React = require('react');
 var {Link} = require('react-router');
+import Dashboard from './Dashboard.jsx';
 import * as Redux from 'react-redux';
 import firebase, {firebaseRef, provider} from 'app/firebase/';
 
@@ -21,6 +22,9 @@ export var Nav = React.createClass({
                 </div>
                {firebase.auth().currentUser ? <div className='top-bar-right'>
                     <ul className='menu'>
+                        <li>
+                            <Link to = {Dashboard}>Dashboard</Link>
+                        </li>
                         <li>
                             <Link onClick={this.onLogout}>Log Out</Link>
                         </li>

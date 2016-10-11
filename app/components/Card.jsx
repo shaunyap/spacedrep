@@ -15,7 +15,7 @@ let cardCount = cards.length;
 
 export var Card = React.createClass({
   getInitialState: function() {
-    return { frontSide: true, cardN: 0, cardArr: cards, book: this.props.book || "TOPIK_beginner" };
+    return { frontSide: true, cardN: 0, cardArr: cards, book: this.props.book };
   },
   
   componentDidMount: function() {
@@ -35,6 +35,16 @@ export var Card = React.createClass({
       };
     });
   },
+  
+    componentWillUnmount: function() {
+      cards = [{
+        "front": "시작",
+        "back": "Start"
+     }];
+     
+     cardCount = cards.length
+    },
+
 
   // upon getting an update from cardControl, if end of deck, go back to first card
   toggleAnswer: function(newState) {
